@@ -29,7 +29,9 @@ const ListaTodos = () => {
     if (error) return <p>Errore...</p>
     else if (!isLoaded) return <p>In caricamento...</p>
     else return (
-        <>
+        <>  
+            <Badge variant="primary">Completati: {data.filter(obj => obj.completed === true).length}</Badge>
+            <Badge variant="warning">Da fare: {data.filter(obj => obj.completed === false).length}</Badge>
             {data.length === 0 ? (<p>Non ci sono todo, aggiungine qualcuna</p>)
                 : data.map((todo, i) => {
                     return (
