@@ -3,11 +3,10 @@ import React, { useState } from 'react';
 const OpzioniTodo = ({ todo }) => {
 
     const [todoValue, setTodoValue] = React.useState(todo.title);
-    const [todoId, setTodoId] = useState(todo.id);
+    const [todoId, ] = useState(todo.id);
     const [toggle, setToggle] = useState(true);
-    const [createdAt, setCreatedAt] = useState(todo.created_at);
-    const [updatedAt, setUpdatedAt] = useState(todo.updated_at);
-    const [completedStatus, setCompletedStatus] = useState(todo.completed);
+    const [createdAt, ] = useState(todo.created_at);
+    const [completedStatus, ] = useState(todo.completed);
 
     const handleOnChange = (e) => {
         const newValue = e.target.value;
