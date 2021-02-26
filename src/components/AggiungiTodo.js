@@ -24,9 +24,7 @@ const AggiungiTodo = () => {
             .then(res => console.log(res))
             .catch(e => console.log(e));
 
-        setTimeout(() => {
-            window.location.reload();
-        }, 500);
+        setInputValue("");
     } else {
         alert("Scrivi almeno 3 caratteri")
     }

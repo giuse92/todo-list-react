@@ -3,10 +3,10 @@ import React, { useState } from 'react';
 const OpzioniTodo = ({ todo }) => {
 
     const [todoValue, setTodoValue] = React.useState(todo.title);
-    const [todoId, ] = useState(todo.id);
+    const [todoId,] = useState(todo.id);
     const [toggle, setToggle] = useState(true);
-    const [createdAt, ] = useState(todo.created_at);
-    const [completedStatus, ] = useState(todo.completed);
+    const [createdAt,] = useState(todo.created_at);
+    const [completedStatus,] = useState(todo.completed);
 
     const handleOnChange = (e) => {
         const newValue = e.target.value;
@@ -34,9 +34,7 @@ const OpzioniTodo = ({ todo }) => {
                 .then((response) => response.json())
                 .then((json) => console.log(json));
 
-            setTimeout(() => {
-                window.location.reload();
-            }, 500);
+            setToggle(true);
         } else {
             alert("Scrivi almeno 3 caratteri")
         }
@@ -47,9 +45,6 @@ const OpzioniTodo = ({ todo }) => {
             method: 'DELETE'
         })
 
-        setTimeout(() => {
-            window.location.reload();
-        }, 500);
     }
 
     const completeTodo = (e) => {
@@ -67,15 +62,11 @@ const OpzioniTodo = ({ todo }) => {
         })
             .then((response) => response.json())
             .then((json) => console.log(json));
-
-        setTimeout(() => {
-            window.location.reload();
-        }, 500);
     }
 
     return (
         <>
-            {todo.completed ? null : <button onClick={toggleEditForm}>{toggle ? "Modifica" : "Chiudi e annulla"}</button>} 
+            {todo.completed ? null : <button onClick={toggleEditForm}>{toggle ? "Modifica" : "Chiudi e annulla"}</button>}
             {toggle ? <button onClick={completeTodo} disabled={todo.completed}>{todo.completed ? "Completato" : "Imposta come completato"}</button> : null}
             {!toggle ? (<div>
                 <input value={todoValue} onChange={handleOnChange} type="text" />

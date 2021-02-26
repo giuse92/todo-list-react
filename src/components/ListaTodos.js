@@ -8,8 +8,6 @@ const ListaTodos = () => {
     const [data, setData] = useState([]);
     const [error, setError] = useState(false);
     const [isLoaded, setIsLoaded] = useState(false);
-    const [filterFalseHidden, setFilterFalseHidden] = useState(false)
-    const [filterTrueHidden, setFilterTrueHidden] = useState(false)
 
     const getAllTodosList = async () => {
         try {
@@ -21,34 +19,17 @@ const ListaTodos = () => {
             setError(true);
         } finally {
             setIsLoaded(true);
-            setFilterFalseHidden(false);
-            setFilterTrueHidden(false);
         }
     };
 
-    const filterTrueCompleted = () => {
-        const filter = data.filter(obj => obj.completed === true);
-        setData(filter);
-        setFilterFalseHidden(true);
-    }
-
-    const filterFalseCompleted = () => {
-        const filter = data.filter(obj => obj.completed === false);
-        setData(filter);
-        setFilterTrueHidden(true);
-    }
-
     useEffect(() => {
         getAllTodosList();
-    }, [])
+    }, [data])
 
     if (error) return <p>Errore...</p>
     else if (!isLoaded) return <p>In caricamento...</p>
     else return (
         <>
-            <Badge hidden={filterTrueHidden} variant="primary"><button onClick={filterTrueCompleted}>Completati: {data.filter(obj => obj.completed === true).length}</button></Badge>
-            <Badge hidden={filterFalseHidden} variant="warning"><button onClick={filterFalseCompleted}>Da fare: {data.filter(obj => obj.completed === false).length}</button></Badge>
-            <Badge variant="danger"><button onClick={getAllTodosList}>Tutti</button></Badge>
             {data.length === 0 ? (<p>Non ci sono todo, aggiungine qualcuna</p>)
                 : data.map((todo, i) => {
                     return (
