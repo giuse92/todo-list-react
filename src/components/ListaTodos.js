@@ -27,13 +27,13 @@ const ListaTodos = () => {
     }, [data])
 
     if (error) return <p>Errore...</p>
-    else if (!isLoaded) return <p>In caricamento...</p>
+    else if (!isLoaded) return <img src="https://i.gifer.com/ZZ5H.gif" width="20px" alt=""></img>
     else return (
         <>
             {data.length === 0 ? (<p>Non ci sono todo, aggiungine qualcuna</p>)
                 : data.map((todo, i) => {
                     return (
-                        <div style={{ margin: "5px 0", border: "1px solid black", width: "650px", padding: "10px" }} key={`todo-n-${i}`}>
+                        <div id={todo.id} style={{ margin: "5px 0", border: "1px solid black", width: "650px", padding: "10px" }} key={`todo-n-${i}`}>
                             <Badge variant="success">{todo.title}</Badge>
                             <Badge variant="info"> {todo.id}</Badge>
                             <div>

@@ -41,10 +41,16 @@ const OpzioniTodo = ({ todo }) => {
     }
 
     const deleteTodo = (e) => {
-        fetch('http://localhost:3000/todos/' + todoId, {
-            method: 'DELETE'
-        })
+        if (window.confirm("Attenzione: questa azione è irreversibile. Cancello?")) {
+            fetch('http://localhost:3000/todos/' + todoId, {
+                method: 'DELETE'
+            })
 
+            setToggle(!toggle);
+            window.location.reload();
+        } else {
+            alert("Operazione annullata")
+        }
     }
 
     const completeTodo = (e) => {
